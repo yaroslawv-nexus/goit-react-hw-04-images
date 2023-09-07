@@ -29,7 +29,7 @@ export const App = () => {
         if (images.data.hits.length === 0) {
           throw new Error();
         }
-        setGallery([...gallery, ...images.data.hits]);
+        setGallery(prev => [...prev, ...images.data.hits]);
       } catch (error) {
         setError(true);
         toast.error('Oops. Error');

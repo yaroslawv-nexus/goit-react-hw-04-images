@@ -3,17 +3,17 @@ import { Overlay, ModalStyle } from './Modal.styled';
 
 export const Modal = ({ largeImageURL, description, onCloseModal }) => {
   useEffect(() => {
+    const closeModalEsc = e => {
+      if (e.key === 'Escape') {
+        onCloseModal();
+      }
+    };
+
     window.addEventListener('keydown', closeModalEsc);
     return () => {
       window.removeEventListener('keydown', closeModalEsc);
     };
-  }, []);
-
-  const closeModalEsc = e => {
-    if (e.key === 'Escape') {
-      onCloseModal();
-    }
-  };
+  }, [onCloseModal]);
 
   const closeClickOverlay = e => {
     if (e.target.nodeName !== 'IMG') {
